@@ -15,5 +15,14 @@ include_directories(
 #        ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(hello_world basic-tutorial-1.c)
-target_link_libraries(hello_world ${GSTREAMER_LIBRARIES})
+add_executable(basic-tutorial-1 basic-tutorial-1.c)
+target_link_libraries(basic-tutorial-1 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-2 basic-tutorial-2.c)
+target_link_libraries(basic-tutorial-2 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-3 basic-tutorial-3.c)
+target_link_libraries(basic-tutorial-3 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-3_plus basic-tutorial-3_plus.c)
+target_link_libraries(basic-tutorial-3_plus ${GSTREAMER_LIBRARIES})
