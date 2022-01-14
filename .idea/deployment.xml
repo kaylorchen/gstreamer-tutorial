@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Local_18.04 (270c7514-fc81-4d14-8867-c823c0582ab6)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.BHf7sicZCp" local="$PROJECT_DIR$/basic" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/basic/cmake-build-debug" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="local_18.04">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/kaylor/gsteamer-tutorial" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ubuntu (e816dcde-e2bd-4071-9577-5e7fd07cd2d7)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
