@@ -28,21 +28,17 @@ int main(int argc, char *argv[]) {
 
   /* Create the elements */
   data.source = gst_element_factory_make ("uridecodebin", "source");
-//  data.convert = gst_element_factory_make ("videoconvert ", "convert");
-  data.sink = gst_element_factory_make ("autovideosink ", "sink");
-//  data.source = gst_element_factory_make ("uridecodebin", "source");
-  data.convert = gst_element_factory_make ("audioconvert", "convert");
-//  data.resample = gst_element_factory_make ("audioresample", "resample");
-//  data.sink = gst_element_factory_make ("autoaudiosink", "sink");
+  data.convert = gst_element_factory_make ("videoconvert", "convert");
+  data.sink = gst_element_factory_make ("autovideosink", "sink");
 
   /* Create the empty pipeline */
   data.pipeline = gst_pipeline_new ("test-pipeline");
-//  g_printerr("\n%d %d %d %d %d\r",!data.pipeline, !data.source, !data.convert, !data.resample, !data.sink);
+//  g_print("%d %d %d %d\n",!data.pipeline, !data.source, !data.convert,  !data.sink);
   if (!data.pipeline || !data.source || !data.convert || !data.sink) {
-    g_printerr ("Not all elements could be created.\n %d %d %d %d %d\n", !data.pipeline, !data.source, !data.convert, !data.resample, !data.sink);
+    g_printerr ("Not all elements could be created.\n");
     return -1;
   }
-  return 0;
+
   /* Build the pipeline. Note that we are NOT linking the source at this
    * point. We will do it later. */
   gst_bin_add_many (GST_BIN (data.pipeline), data.source, data.convert, data.sink, NULL);
