@@ -7,10 +7,14 @@ pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0)
 #pkg_check_modules(GST_APP REQUIRED gstreamer-app-1.0)
 pkg_check_modules(GST_VIDEO REQUIRED gstreamer-video-1.0)
+pkg_check_modules(GST_AUDIO REQUIRED gstreamer-audio-1.0)
+pkg_check_modules(GST_pbutils REQUIRED gstreamer-pbutils-1.0)
 include_directories(
         ${GTK3_INCLUDE_DIRS}
         ${GSTREAMER_INCLUDE_DIRS}
         ${GST_VIDEO_INCLUDE_DIRS}
+        ${GST_AUDIO_INCLUDE_DIRS}
+        ${GST_pbutils_INCLUDE_DIRS}
 #        ${GSTREAMER-APP_INCLUDE_DIRS}
 #        ${GSTREAMER-AUDIO_INCLUDE_DIRS}
 #        ${GSTREAMER-PBUTILS_INCLUDE_DIRS}
@@ -44,3 +48,9 @@ target_link_libraries(basic-tutorial-6_plus ${GSTREAMER_LIBRARIES})
 
 add_executable(basic-tutorial-7 basic-tutorial-7.c)
 target_link_libraries(basic-tutorial-7 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-8 basic-tutorial-8.c)
+target_link_libraries(basic-tutorial-8 ${GSTREAMER_LIBRARIES} ${GST_AUDIO_LIBRARIES})
+
+add_executable(basic-tutorial-9 basic-tutorial-9.c)
+target_link_libraries(basic-tutorial-9 ${GSTREAMER_LIBRARIES} ${GST_pbutils_LIBRARIES})
