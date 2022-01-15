@@ -35,3 +35,9 @@ target_link_libraries(basic-tutorial-4 ${GSTREAMER_LIBRARIES})
 
 add_executable(basic-tutorial-5 basic-tutorial-5.c)
 target_link_libraries(basic-tutorial-5 ${GSTREAMER_LIBRARIES} ${GTK3_LIBRARIES} ${GST_VIDEO_LIBRARIES})
+
+add_executable(basic-tutorial-6 basic-tutorial-6.c)
+target_link_libraries(basic-tutorial-6 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-6_plus basic-tutorial-6_plus.c)
+target_link_libraries(basic-tutorial-6_plus ${GSTREAMER_LIBRARIES})
