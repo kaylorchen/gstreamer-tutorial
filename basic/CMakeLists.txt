@@ -41,3 +41,6 @@ target_link_libraries(basic-tutorial-6 ${GSTREAMER_LIBRARIES})
 
 add_executable(basic-tutorial-6_plus basic-tutorial-6_plus.c)
 target_link_libraries(basic-tutorial-6_plus ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-7 basic-tutorial-7.c)
+target_link_libraries(basic-tutorial-7 ${GSTREAMER_LIBRARIES})
