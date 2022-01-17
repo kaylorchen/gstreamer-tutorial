@@ -54,3 +54,10 @@ target_link_libraries(basic-tutorial-8 ${GSTREAMER_LIBRARIES} ${GST_AUDIO_LIBRAR
 
 add_executable(basic-tutorial-9 basic-tutorial-9.c)
 target_link_libraries(basic-tutorial-9 ${GSTREAMER_LIBRARIES} ${GST_pbutils_LIBRARIES})
+
+add_executable(basic-tutorial-12 basic-tutorial-12.c)
+target_link_libraries(basic-tutorial-12 ${GSTREAMER_LIBRARIES})
+
+add_executable(basic-tutorial-13 basic-tutorial-13.c)
+target_link_libraries(basic-tutorial-13 ${GSTREAMER_LIBRARIES})
+

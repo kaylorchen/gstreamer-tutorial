@@ -9,14 +9,8 @@
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/basic/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/basic/cmake-build-debug" />
           </excludedPaths>
-        </serverdata>
-      </paths>
-      <paths name="local_18.04">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/home/kaylor/gsteamer-tutorial" local="$PROJECT_DIR$" web="/" />
-          </mappings>
         </serverdata>
       </paths>
       <paths name="ubuntu (e816dcde-e2bd-4071-9577-5e7fd07cd2d7)">
