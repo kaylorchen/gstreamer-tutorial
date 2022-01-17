@@ -25,3 +25,7 @@ include_directories(
 add_executable(playback-tutorial-1 playback-tutorial-1.c)
 target_link_libraries(playback-tutorial-1 ${GSTREAMER_LIBRARIES})
 
+add_executable(playback-tutorial-2 playback-tutorial-2.c)
+target_link_libraries(playback-tutorial-2 ${GSTREAMER_LIBRARIES})
+
+
