@@ -28,4 +28,17 @@ target_link_libraries(playback-tutorial-1 ${GSTREAMER_LIBRARIES})
 add_executable(playback-tutorial-2 playback-tutorial-2.c)
 target_link_libraries(playback-tutorial-2 ${GSTREAMER_LIBRARIES})
 
+add_executable(playback-tutorial-4 playback-tutorial-4.c)
+target_link_libraries(playback-tutorial-4 ${GSTREAMER_LIBRARIES})
 
+add_executable(playback-tutorial-3 playback-tutorial-3.c)
+target_link_libraries(playback-tutorial-3 ${GSTREAMER_LIBRARIES} ${GST_AUDIO_LIBRARIES})
+
+add_executable(playback-tutorial-5 playback-tutorial-5.c)
+target_link_libraries(playback-tutorial-5 ${GSTREAMER_LIBRARIES} ${GST_VIDEO_LIBRARIES})
+
+add_executable(playback-tutorial-6 playback-tutorial-6.c)
+target_link_libraries(playback-tutorial-6 ${GSTREAMER_LIBRARIES})
+
+add_executable(playback-tutorial-7 playback-tutorial-7.c)
+target_link_libraries(playback-tutorial-7 ${GSTREAMER_LIBRARIES})

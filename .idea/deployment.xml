@@ -5,9 +5,11 @@
       <paths name="Local_18.04 (270c7514-fc81-4d14-8867-c823c0582ab6)">
         <serverdata>
           <mappings>
-            <mapping deploy="/tmp/tmp.BHf7sicZCp" local="$PROJECT_DIR$/basic" />
+            <mapping deploy="/tmp/tmp.BHf7sicZCp" local="$PROJECT_DIR$/" />
           </mappings>
           <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/playback/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/playback/cmake-build-debug" />
             <excludedPath local="true" path="$PROJECT_DIR$/basic/cmake-build-debug" />
             <excludedPath local="true" path="$PROJECT_DIR$/basic/cmake-build-debug" />
           </excludedPaths>
