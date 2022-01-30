@@ -24,3 +24,6 @@ include_directories(
 )
 add_executable(appsrc_ex appsrc_ex.c)
 target_link_libraries(appsrc_ex ${GSTREAMER_LIBRARIES} ${GST_APP_LIBRARIES})
+
+add_executable(v4l2_rtp v4l2_rtp.c)
+target_link_libraries(v4l2_rtp ${GSTREAMER_LIBRARIES})
