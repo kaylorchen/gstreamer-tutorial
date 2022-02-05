@@ -27,3 +27,6 @@ target_link_libraries(appsrc_ex ${GSTREAMER_LIBRARIES} ${GST_APP_LIBRARIES})
 
 add_executable(v4l2_rtp v4l2_rtp.c)
 target_link_libraries(v4l2_rtp ${GSTREAMER_LIBRARIES})
+
+add_executable(app_test app_test.c)
+target_link_libraries(app_test ${GSTREAMER_LIBRARIES} ${GST_APP_LIBRARIES})

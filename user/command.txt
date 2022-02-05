@@ -1,0 +1,1 @@
+gst-launch-1.0 v4l2src device=/dev/video0 ! "video/x-raw, width=640, height=480" ! queue ! vaapipostproc ! vaapih264enc tune=high-compression bitrate=2048 cabac=true compliance-mode=restrict-buf-alloc ! vaapih264dec ! vaapipostproc ! vaapisink sync=false
