@@ -17,6 +17,7 @@ include_directories(
         ${GST_AUDIO_INCLUDE_DIRS}
         ${GST_pbutils_INCLUDE_DIRS}
         ${GST_APP_INCLUDE_DIRS}
+        ./
 #        ${GSTREAMER-AUDIO_INCLUDE_DIRS}
 #        ${GSTREAMER-PBUTILS_INCLUDE_DIRS}
 #        ${GSTREAMER-FFT_INCLUDE_DIRS}
@@ -30,3 +31,6 @@ target_link_libraries(v4l2_rtp ${GSTREAMER_LIBRARIES})
 
 add_executable(app_test app_test.c)
 target_link_libraries(app_test ${GSTREAMER_LIBRARIES} ${GST_APP_LIBRARIES})
+
+add_executable(rtptest rtptest.c rtppipeline.c)
+target_link_libraries(rtptest ${GSTREAMER_LIBRARIES} ${GST_APP_LIBRARIES})
