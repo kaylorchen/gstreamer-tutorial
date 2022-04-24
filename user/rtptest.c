@@ -3,6 +3,11 @@
 
 #define WIDTH 1920
 #define HEIGHT 1440
+/*
+ * 测试指令
+ * gst-launch-1.0 udpsrc port=5600 caps="application/x-rtp" ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
+ *
+ * */
 
 int main(void)
 {
@@ -33,7 +38,7 @@ int main(void)
         }
         count++;
         pushTestI420Data(buf, size);
-        usleep(33*2000);
+        usleep(33*1000);
     }
     return 0;
 }

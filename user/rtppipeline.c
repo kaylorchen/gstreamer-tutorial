@@ -63,7 +63,8 @@ int initRTPPipeline(const char *ip, int port) {
         return -1;
     }
 #else
-    if (!data.pipeline || !data.source || !data.input_filter || !data.queue || !data.convert || !data.scale || !data.filter || !data.encode || !data.rtph264pay || !data.sink){
+    if (!data.pipeline || !data.source || !data.input_filter || !data.queue || !data.convert || !data.scale ||
+        !data.filter || !data.encode || !data.rtph264pay || !data.sink) {
         g_printerr("Not all elements could be created.\n");
         return -1;
     }
@@ -78,8 +79,10 @@ int initRTPPipeline(const char *ip, int port) {
         return -1;
     }
 #else
-    gst_bin_add_many(GST_BIN (data.pipeline), data.source, data.input_filter, data.queue, data.convert, data.scale, data.filter, data.encode, data.rtph264pay, data.sink, NULL);
-    if (!gst_element_link_many(data.source, data.input_filter, data.queue, data.convert, data.scale, data.filter, data.encode, data.rtph264pay, data.sink, NULL)) {
+    gst_bin_add_many(GST_BIN (data.pipeline), data.source, data.input_filter, data.queue, data.convert, data.scale,
+                     data.filter, data.encode, data.rtph264pay, data.sink, NULL);
+    if (!gst_element_link_many(data.source, data.input_filter, data.queue, data.convert, data.scale, data.filter,
+                               data.encode, data.rtph264pay, data.sink, NULL)) {
         g_printerr("Elements could not be linked.\n");
         gst_object_unref(data.pipeline);
         return -1;
@@ -96,10 +99,10 @@ int initRTPPipeline(const char *ip, int port) {
                                      "height", G_TYPE_INT, 1440,
 //                                     "framerate", GST_TYPE_FRACTION, 25, 1,
                                      NULL), NULL);
-    g_object_set(G_OBJECT (data.source),"block", TRUE, NULL); 
+    g_object_set(G_OBJECT (data.source), "block", TRUE, NULL);
     GstCaps *caps;
     caps = gst_caps_from_string("video/x-raw,format=I420,width=1920,height=1440,framerate=30/1 ");
-    g_object_set(data.input_filter, "caps", caps, NULL);                                
+    g_object_set(data.input_filter, "caps", caps, NULL);
     /**变换比例的时候，图像做的是最小边匹配*/
     caps = gst_caps_from_string("video/x-raw, width=1920, height=720");
     g_object_set(data.filter, "caps", caps, NULL);
@@ -159,36 +162,43 @@ void pushRTPStreamI420(AVFrame *pFrameYUV, int size) {
     gst_app_src_push_buffer(GST_APP_SRC (data.source), buf);
 }
 
-int testPipeline(const char *ip, int port, int iwidth, int iheight, int owidth, int oheight)
-{
+int testPipeline(const char *ip, int port, int iwidth, int iheight, int owidth, int oheight) {
     g_print("Create a pipeline\n");
-    unsigned char cmd[512] = {0};
-    sprintf(cmd, "appsrc name=appsrc_element !\
+    unsigned char cmd[1024] = {0};
+#ifndef GST_VAAPI
+    sprintf(cmd, "appsrc name=appsrc_element caps=\"video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 \" ! \
           video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 ! \
           queue ! videoconvert ! videoscale ! \
           video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 ! \
-          identity check-imperfect-timestamp=true !x264enc tune=zerolatency speed-preset=ultrafast ! \
+          identity check-imperfect-timestamp=true ! x264enc tune=fastdecode speed-preset=ultrafast ! \
           rtph264pay config-interval=1 pt=35 ! udpsink host=%s port=%d",
-          iwidth, iheight, owidth, oheight, ip, port);
+            iwidth, iheight, iwidth, iheight, owidth, oheight, ip, port);
+#else
+    sprintf(cmd, "appsrc name=appsrc_element caps=\"video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 \" ! \
+          video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 ! \
+          queue ! vaapipostproc ! videoscale ! \
+          video/x-raw,format=I420,width=%d,height=%d,framerate=30/1 ! \
+          identity check-imperfect-timestamp=true ! vaapih264enc tune=high-compression bitrate=2048 cabac=true compliance-mode=restrict-buf-alloc ! \
+          rtph264pay config-interval=1 pt=35 ! udpsink host=%s port=%d",
+            iwidth, iheight, iwidth, iheight, owidth, oheight, ip, port);
+#endif
     printf("%s", cmd);
-
     gst_init(NULL, NULL);
-        data.pipeline =
-        gst_parse_launch(cmd,NULL);
+    data.pipeline =
+            gst_parse_launch(cmd, NULL);
     // data.pipeline =
     //     gst_parse_launch("appsrc name=appsrc_element block=true !\
     //       video/x-raw,format=I420,width=1920,height=1440,framerate=30/1 ! \
     //       identity check-imperfect-timestamp=true ! videoconvert ! x264enc ! \
     //       video/x-h264,profile=\"high-4:4:4\" ! decodebin ! videoconvert ! autovideosink",
     //                      NULL);
-    data.source = gst_bin_get_by_name (GST_BIN(data.pipeline), "appsrc_element");
+    data.source = gst_bin_get_by_name(GST_BIN(data.pipeline), "appsrc_element");
     g_assert(data.source);
     g_assert(GST_IS_APP_SRC(data.source));
     gst_element_set_state(data.pipeline, GST_STATE_PLAYING);
 }
 
-void pushTestI420Data(unsigned char *I420data, int size)
-{
+void pushTestI420Data(unsigned char *I420data, int size) {
     GstBuffer *buf;
     GstMapInfo map;
     //    g_print("size = %d\n", size);
